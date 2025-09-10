@@ -1,6 +1,6 @@
 import config from "../conf/config"
 import { Client, Account, ID } from "appwrite";
-export class AuthService{
+export class authService{
 client = new Client()
 account
 constructor() {
@@ -49,5 +49,5 @@ async logout() {
 
 }
 
-const AuthService = new AuthService()
+const AuthService = new authService()
 export default AuthService;
