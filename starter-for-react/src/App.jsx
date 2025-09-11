@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Home , Footer } from "./Components";
+import { Header , Footer } from "./Components";
 import { useDispatch } from 'react-redux' 
 import AuthService from "./lib/Auth";
 import { useState, useEffect } from "react";
@@ -31,7 +31,7 @@ function App() {
   return Loading? (<div>Loading...</div>
   ) : (
     <div className="App">
-      <Home />
+      <Header />
       <main>Todo <Outlet /></main>
 
       <Footer />
