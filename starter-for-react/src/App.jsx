@@ -16,7 +16,7 @@ function App() {
     ()=>{
  AuthService.currentUser().then((userData)=>{
   if (userData) {
-    dispatch(login(userData))
+    dispatch(login({userData}))
   }
   else{
     dispatch(logout())
@@ -32,8 +32,8 @@ function App() {
   ) : (
     <div className="App">
       <Home />
-      <main>Todo    </main>
-    
+      <main>Todo <Outlet /></main>
+
       <Footer />
     </div>
   );
