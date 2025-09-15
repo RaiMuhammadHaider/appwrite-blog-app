@@ -9,7 +9,7 @@ constructor() {
     .setProject(config.appwriteProjectId)
     this.account = new Account(this.client)
 }
-async creatAccount ({name , email , password}) {
+async createAccount ({name , email , password}) {
     try {
        const userAccount =  await this.account.create( ID.unique() ,name, email , password)
        if (userAccount) {
