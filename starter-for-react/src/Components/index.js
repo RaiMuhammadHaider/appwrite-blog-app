@@ -8,6 +8,7 @@ import LogoutBtn from "./Header/LogoutBtn";
 import Header from "./Header/Header";
 import Select from "./Select";
 import PostCard from "./PostCard";
+import RTE from "../Components/RTE"
 
 export {
 
@@ -19,5 +20,6 @@ export {
     Input,
     LogoutBtn  ,
     Select,
-    PostCard 
+    PostCard ,
+    RTE
 }
