@@ -10,6 +10,7 @@ import Select from "./Select";
 import PostCard from "./PostCard";
 import RTE from "../Components/RTE"
 import Login from "../Components/Login"
+import Signup from "../Components/Signup"
 
 export {
 
@@ -23,5 +24,6 @@ export {
     Select,
     PostCard ,
     RTE,
-    Login
+    Login,
+    Signup
 }
