@@ -11,6 +11,7 @@ import PostCard from "./PostCard";
 import RTE from "../Components/RTE"
 import Login from "../Components/Login"
 import Signup from "../Components/Signup"
+import PostForm from "./Post-form/PostForm";
 
 export {
 
@@ -25,5 +26,6 @@ export {
     PostCard ,
     RTE,
     Login,
-    Signup
+    Signup,
+    PostForm
 }
