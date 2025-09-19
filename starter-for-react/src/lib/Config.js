@@ -15,7 +15,7 @@ export class Services {
     async createPost({title, content , slug, FeaturedImage, status, userId}){
         try {
             return await this.databases.createDocument({
-                databasesId: conf.appwriteDatabaseId,
+                databaseId: conf.appwriteDatabaseId,
                 collectionId: conf.appwriteCollectionId,
                 documentId: slug,
                 data:{
@@ -31,18 +31,19 @@ export class Services {
             
         }
     }
-    async getPosts(queries=["status" , "active"]){
-        try {
-            return await this.databases.listDocuments({
-                databaseId: conf.appwriteDatabaseId,
-                collectionId: conf.appwriteCollectionId,
-                queries
-            })
-        } catch (error) {
-            console.log("Appwrite Service :: getPosts ::", error);
-            
-        }
-    }
+async getPosts(queries = ["status", "active"]) {
+  try {
+    return await this.databases.listDocuments(
+      conf.appwriteDatabaseId,     // databaseId
+      conf.appwriteCollectionId,   // collectionId
+      queries                      // optional queries
+    )
+  } catch (error) {
+    console.log("Appwrite Service :: getPosts ::", error)
+    throw error // optional: let your component handle it
+  }
+}
+
     async getPost(slug){
         try {
             return await this.databases.getDocument({
@@ -87,22 +88,23 @@ export class Services {
             return false;
         }
     }
-    async uploadFile(file){
-        try {
-            return await this.bucket.createFile({
-                bucketId: conf.appwriteBucketId,
-                fileId: ID.unique(),
-                file
-            })
-        } catch (error) {
-            console.log("Appwrite Service :: uploadFile ::", error);
-            return false;
-        }
+  async uploadFile(file) {
+    try {
+      return await this.storage.createFile(
+        conf.appwriteBucketId,
+        ID.unique(),
+        file
+      );
+    } catch (error) {
+      console.log('Appwrite Service :: uploadFile ::', error);
+      throw error; // let the caller handle errors
     }
-    async getFilePreview(fileId){
-        try {
-            return `${conf.appwriteUrl}/storage/buckets/${conf.appwriteBucketId}/files/${fileId}/preview?project=${conf.appwriteProjectId}&width=400&height=400`
-        } catch (error) {
+  }
+
+  async getFilePreview(fileId) {
+    try {
+      return `${conf.appwriteUrl}/storage/buckets/${conf.appwriteBucketId}/files/${fileId}/preview?project=${conf.appwriteProjectId}&width=400&height=400`;
+    } catch (error) {
             console.log("Appwrite Service :: getFilePreview ::", error);
             return false;
         }

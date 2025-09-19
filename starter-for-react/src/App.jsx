@@ -32,7 +32,9 @@ function App() {
   ) : (
     <div className="App">
       <Header />
-      <main>Todo <Outlet /></main>
+      <main className=" w-full flex justify-center items-start pt-10 pb-20">
+        <Outlet />
+      </main>
 
       <Footer />
     </div>

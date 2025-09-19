@@ -1,43 +1,54 @@
-import React from 'react'
-import { Button, Container, Logo, LogoutBtn } from '../index'
-import { Link , useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React from "react"
+import { Button, Container, Logo, LogoutBtn } from "../index"
+import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Header = () => {
-    const navigate = useNavigate();
-    const authStatus = useSelector(state => state.auth.status);
-    const navItems = [
-        {name: 'Home', slug : '/' , active : !authStatus},
-        {name: 'login', slug : '/login' , active : !authStatus},
-        {name : 'signup', slug : '/signup' , active : !authStatus},
-        {name : "allPosts", slug : '/posts' , active : authStatus},
-        {name : "createPost", slug : '/create-post' , active : authStatus},
+  const navigate = useNavigate()
+  const authStatus = useSelector((state) => state.auth.status)
 
-    ]
+  const navItems = [
+    { name: "Home", slug: "/", active: true }, // always visible
+    { name: "Login", slug: "/login", active: !authStatus },
+    { name: "Signup", slug: "/signup", active: !authStatus },
+    { name: "All Posts", slug: "/posts", active: authStatus },
+    { name: "Create Post", slug: "/create-post", active: authStatus },
+    { name: "Contact", slug: "/contact", active: true }, // always visible
+  ]
 
   return (
-  <head>
-    <div className='w-full shadow-md py-4'>
+    <header>
+      <div className="w-full shadow-md py-4 bg-white">
         <Container>
-            <nav className='flex justify-between items-center'>
-                <Link to={'/'}>
-                <Logo width='120px'/>
-                </Link>
-                <div className='flex gap-4 items-center'>
-{
-    navItems.map((item)=> item.active ? <Button key={item.name} onClick={() => navigate(item.slug)} className='capitalize'>{item.name}</Button> : null)
-    
+          <nav className="flex justify-between items-center">
+            {/* Logo */}
+            <Link to="/">
+              <Logo width="120px" />
+            </Link>
 
-}
-{authStatus && <li><LogoutBtn/></li>}
-                </div>
-            </nav>
+            {/* Navigation */}
+            <div className="flex gap-4 items-center">
+              {navItems.map(
+                (item) =>
+                  item.active && (
+                    <Button
+                      key={item.slug}
+                      onClick={() => navigate(item.slug)}
+                      className="capitalize"
+                    >
+                      {item.name}
+                    </Button>
+                  )
+              )}
+
+              {/* Logout button */}
+              {authStatus && <LogoutBtn />}
+            </div>
+          </nav>
         </Container>
-    </div>
-  </head>
-    
-
-                )
+      </div>
+    </header>
+  )
 }
 
 export default Header

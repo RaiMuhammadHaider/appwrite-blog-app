@@ -32,7 +32,7 @@
 
 // export default Home
 import React, { useState, useEffect } from 'react'
-import { Container, PostCard } from "../index"
+import { Container, PostCard } from "../../Components/index"
 import services from '../../lib/Config'
 
 const Home = () => {

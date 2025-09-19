@@ -12,6 +12,7 @@ import RTE from "../Components/RTE"
 import Login from "../Components/Login"
 import Signup from "../Components/Signup"
 import PostForm from "./Post-form/PostForm";
+import AuthLayout from "../Components/AuthLayout";
 
 export {
 
@@ -27,5 +28,6 @@ export {
     RTE,
     Login,
     Signup,
-    PostForm
+    PostForm,
+    AuthLayout,
 }

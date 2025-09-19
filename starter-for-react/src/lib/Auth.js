@@ -9,29 +9,31 @@ constructor() {
     .setProject(config.appwriteProjectId)
     this.account = new Account(this.client)
 }
-async createAccount ({name , email , password}) {
-    try {
-       const userAccount =  await this.account.create( ID.unique() ,name, email , password)
-       if (userAccount) {
-        return this.login({email, password})
-       }
-       else
-        return userAccount
-    } catch (error) {
-        console.log(`Auth :: CreateAccount :: ${error}`);
-        
+async createAccount({ name, email, password }) {
+  try {
+    // Correct order: ID, email, password, name
+    const userAccount = await this.account.create(ID.unique(), email, password, name);
+
+    if (userAccount) {
+      // Automatically log in after signup
+      return this.login({ email, password });
     }
+
+    return userAccount;
+  } catch (error) {
+    console.log(`Auth :: CreateAccount :: ${error}`);
+    throw error; // so your React component can display the error
+  }
 }
-async login({email, password}) {
-    try {
-        return await this.account.createEmailPasswordSession({
-            email, password
-        })
-        
-    } catch (error) {
-        console.log(`Auth :: Login :: ${error}`);
-    }
+async login({ email, password }) {
+  try {
+    return await this.account.createEmailPasswordSession(email, password)
+  } catch (error) {
+    console.log(`Auth :: Login :: ${error}`)
+    throw error // so your React component can handle it
+  }
 }
+
 async currentUser () {
     try {
         return await this.account.get()
