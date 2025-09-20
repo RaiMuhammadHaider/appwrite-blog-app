@@ -19,11 +19,11 @@ const Header = () => {
   return (
     <header>
       <div className="w-full shadow-md py-4 bg-white">
-        <Container>
+        <Container   >
           <nav className="flex justify-between items-center">
             {/* Logo */}
             <Link to="/">
-              <Logo width="120px" />
+              <Logo width="10px" height="10px" />
             </Link>
 
             {/* Navigation */}
@@ -34,7 +34,7 @@ const Header = () => {
                     <Button
                       key={item.slug}
                       onClick={() => navigate(item.slug)}
-                      className="capitalize"
+                      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                     >
                       {item.name}
                     </Button>
@@ -42,7 +42,7 @@ const Header = () => {
               )}
 
               {/* Logout button */}
-              {authStatus && <LogoutBtn />}
+              {authStatus && <LogoutBtn className />}
             </div>
           </nav>
         </Container>

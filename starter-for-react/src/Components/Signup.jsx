@@ -38,19 +38,19 @@ const Signup = () => {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-100">
-      <div className="w-96 p-6 bg-white rounded shadow space-y-6">
+    <div className=" min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-white">
+      <div className="">
         {/* Header */}
-        <div className="flex flex-col items-center space-y-2">
+        <div className=" text-center mb-6">
           <Logo />
           <h2 className="text-2xl font-bold">Sign Up</h2>
-          <Link to="/login" className="text-sm text-blue-500">
+          <Link to="/login" className="text-sm text-blue-500  ">
             Already have an account? Log in
           </Link>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(signup)} className="space-y-4">
+        <form onSubmit={handleSubmit(signup)} className="space-y-4  ">
           {/* Name */}
           <div>
             <Input
@@ -120,7 +120,7 @@ const Signup = () => {
           {error && <div className="text-red-500 text-sm">{error}</div>}
 
           {/* Submit Button */}
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full   bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " disabled={loading}>
             {loading ? "Signing up..." : "Sign Up"}
           </Button>
         </form>

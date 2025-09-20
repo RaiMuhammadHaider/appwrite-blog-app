@@ -11,7 +11,7 @@ const LogoutBtn = () => {
         })
     }
   return (
-    <div onClick={handleLogout}> LogoutBtn</div>
+    <div onClick={handleLogout} className="cursor-pointer border p-2 rounded hover:bg-red-500"> LogoutBtn</div>
   )
 }
 
